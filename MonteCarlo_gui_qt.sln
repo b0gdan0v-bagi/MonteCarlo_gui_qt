@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30621.155
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "MonteCarlo_gui_qt", "MonteCarlo_gui_qt\MonteCarlo_gui_qt.vcxproj", "{832E386D-637C-4876-87A8-DA26AC7849F4}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x64 = Debug|x64
+		Release|x64 = Release|x64
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{832E386D-637C-4876-87A8-DA26AC7849F4}.Debug|x64.ActiveCfg = Debug|x64
+		{832E386D-637C-4876-87A8-DA26AC7849F4}.Debug|x64.Build.0 = Debug|x64
+		{832E386D-637C-4876-87A8-DA26AC7849F4}.Release|x64.ActiveCfg = Release|x64
+		{832E386D-637C-4876-87A8-DA26AC7849F4}.Release|x64.Build.0 = Release|x64
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {D4133435-5ABA-45A3-B743-39A301627061}
+	EndGlobalSection
+EndGlobal

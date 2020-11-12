@@ -1,0 +1,28 @@
+<UI version="4.0" >
+ <class>MonteCarlo_gui_qtClass</class>
+ <widget class="QMainWindow" name="MonteCarlo_gui_qtClass" >
+  <property name="objectName" >
+   <string notr="true">MonteCarlo_gui_qtClass</string>
+  </property>
+  <property name="geometry" >
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>600</width>
+    <height>400</height>
+   </rect>
+  </property>
+  <property name="windowTitle" >
+   <string>MonteCarlo_gui_qt</string>
+  </property>  <widget class="QMenuBar" name="menuBar" />
+  <widget class="QToolBar" name="mainToolBar" />
+  <widget class="QWidget" name="centralWidget" />
+  <widget class="QStatusBar" name="statusBar" />
+ </widget>
+ <layoutDefault spacing="6" margin="11" />
+ <pixmapfunction></pixmapfunction>
+ <resources>
+   <include location="MonteCarlo_gui_qt.qrc"/>
+ </resources>
+ <connections/>
+</UI>
