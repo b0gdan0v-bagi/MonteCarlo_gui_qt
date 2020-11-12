@@ -24,26 +24,22 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <QtRcc Include="MonteCarlo_gui_qt.qrc">
-      <Filter>Resource Files</Filter>
-    </QtRcc>
-    <QtUic Include="MonteCarlo_gui_qt.ui">
-      <Filter>Resource Files</Filter>
-    </QtUic>
-    <QtMoc Include="MonteCarlo_gui_qt.h">
-      <Filter>Header Files</Filter>
-    </QtMoc>
-    <ClCompile Include="MonteCarlo_gui_qt.cpp">
+    <ClCompile Include="listwidget.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ResourceCompile Include="$pro_name$.rc">
-    </ResourceCompile>
-    <None Include="$pro_name$.ico">
-      <Filter>Resource Files</Filter>
-    </None>
-    <None Include="$pro_name$.def">
-      <Filter>Resource Files</Filter>
-    </None>
-
+    <ClCompile Include="main.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="mainframe.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <QtMoc Include="listwidget.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
+    <QtMoc Include="mainframe.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
   </ItemGroup>
 </Project>
