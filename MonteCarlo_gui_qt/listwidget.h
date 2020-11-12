@@ -11,6 +11,7 @@
 
 #include <QLineEdit>
 #include <QLabel>
+#include "MaterialStruct.h"
 
 QT_BEGIN_NAMESPACE
 class QAction;
@@ -32,6 +33,7 @@ class ListWidget : public QWidget {
 
 public:
     ListWidget(QWidget* parent = 0);
+    QList<MaterialStruct> toCalcList;
 
 private slots:
 

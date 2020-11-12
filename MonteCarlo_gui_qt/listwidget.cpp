@@ -17,19 +17,22 @@
 #include <QSpinBox>
 #include <QStackedWidget>
 
+#include <QList>
+
 ListWidget::ListWidget(QWidget* parent)
     : QWidget(parent) {
     
     QVBoxLayout* vbox = new QVBoxLayout();
     vbox->setSpacing(10);
-    QVBoxLayout* vbox2 = new QVBoxLayout();
-    vbox2->setSpacing(10);
+    //QVBoxLayout* vbox2 = new QVBoxLayout();
+    //vbox2->setSpacing(10);
+    QGridLayout* controlsLayout = new QGridLayout;
 
     QHBoxLayout* hbox = new QHBoxLayout(this);
 
     lw = new QListWidget(this);
-    lw->addItem("si");
-    lw->addItem("inas");
+    //lw->addItem("si");
+    //lw->addItem("inas");
 
 
     save = new QPushButton("Save", this);
@@ -40,7 +43,7 @@ ListWidget::ListWidget(QWidget* parent)
     testButton = new QPushButton("TEST", this);
     
     // material;
-    QHBoxLayout* materialBox = new QHBoxLayout();
+
     materialLabel = new QLabel("Material :");
     materialCB = new QComboBox(this);
     materialCB->addItem("ge");
@@ -48,21 +51,21 @@ ListWidget::ListWidget(QWidget* parent)
     materialCB->addItem("inas");
     materialCB->addItem("ingaas");
     materialCB->addItem("cdhgte");
-    materialBox->addWidget(materialLabel);
-    materialBox->addWidget(materialCB);
-    vbox2->addLayout(materialBox);
+    controlsLayout->addWidget(materialLabel, 0, 0);
+    controlsLayout->addWidget(materialCB,0,1);
+
     // iterations
-    QHBoxLayout* iterationsBox = new QHBoxLayout();
+
     iterationsSB = new QSpinBox(this);
     iterationsSB->setMinimum(3);
     iterationsSB->setMaximum(7);
     iterationsSB->setValue(4);
-    iterationsLabel = new QLabel("test my own label = 10^");
-    iterationsBox->addWidget(iterationsLabel);
-    iterationsBox->addWidget(iterationsSB);
-    vbox2->addLayout(iterationsBox);
+    iterationsLabel = new QLabel("iterations = 10^");
+    controlsLayout->addWidget(iterationsLabel, 1, 0);
+    controlsLayout->addWidget(iterationsSB, 1, 1);
+
     // max field
-    QHBoxLayout* maxFieldBox = new QHBoxLayout();
+
     maxFieldLabel = new QLabel("max field, V/sm");
     maxFieldLE = new QLineEdit(this);
     maxFieldLE->setValidator(new QIntValidator(1, 1000000, this));
@@ -72,32 +75,32 @@ ListWidget::ListWidget(QWidget* parent)
     numberFieldsToCalcSB->setMinimum(2);
     numberFieldsToCalcSB->setMaximum(10);
     numberFieldsToCalcSB->setValue(3);
-    maxFieldBox->addWidget(maxFieldLabel);
-    maxFieldBox->addWidget(maxFieldLE);
-    maxFieldBox->addWidget(numberFieldsToCalcLabel);
-    maxFieldBox->addWidget(numberFieldsToCalcSB);
-    vbox2->addLayout(maxFieldBox);
+    controlsLayout->addWidget(maxFieldLabel, 2, 0);
+    controlsLayout->addWidget(maxFieldLE, 2, 1);
+    controlsLayout->addWidget(numberFieldsToCalcLabel, 2, 2);
+    controlsLayout->addWidget(numberFieldsToCalcSB, 2, 3);
+
     // out points
-    QHBoxLayout* outPointsBox = new QHBoxLayout();
+
     outputPointsLabel = new QLabel("Number of output points ");
     outputPountsLE = new QLineEdit(this);
     outputPountsLE->setValidator(new QIntValidator(1, 50000, this));
     outputPountsLE->setText(QString::number(40000));
-    outPointsBox->addWidget(outputPointsLabel);
-    outPointsBox->addWidget(outputPountsLE);
-    vbox2->addLayout(outPointsBox);
+    controlsLayout->addWidget(outputPointsLabel, 3, 0);
+    controlsLayout->addWidget(outputPountsLE, 3, 1);
+
     // gamma
-    QHBoxLayout* gammaBox = new QHBoxLayout();
+
     gammaLabel = new QLabel("gamma = 10^");
     gammaSB = new QSpinBox(this);
     gammaSB->setMinimum(8);
     gammaSB->setMaximum(15);
     gammaSB->setValue(12);
-    gammaBox->addWidget(gammaLabel);
-    gammaBox->addWidget(gammaSB);
-    vbox2->addLayout(gammaBox);
-    // tempterature
-    QHBoxLayout* temperatureBox = new QHBoxLayout();
+    controlsLayout->addWidget(gammaLabel, 4, 0);
+    controlsLayout->addWidget(gammaSB, 4, 1);
+
+    // temperature
+
     temperatureLabel = new QLabel(tr("Temperature, K"));
     temperatureLE = new QLineEdit(this);
     temperatureLE->setValidator(new QIntValidator(0,400,this));
@@ -105,17 +108,16 @@ ListWidget::ListWidget(QWidget* parent)
     roomT = new QPushButton("room", this);
     nitrogenT = new QPushButton("nitro", this);
     heliumT = new QPushButton("hellium", this);
-    temperatureBox->addWidget(temperatureLabel);
-    temperatureBox->addWidget(temperatureLE);
-    temperatureBox->addWidget(roomT);
-    temperatureBox->addWidget(nitrogenT);
-    temperatureBox->addWidget(heliumT);
+    controlsLayout->addWidget(temperatureLabel, 5,0 );
+    controlsLayout->addWidget(temperatureLE, 5, 1);
+    controlsLayout->addWidget(roomT, 5, 2);
+    controlsLayout->addWidget(nitrogenT, 5, 3);
+    controlsLayout->addWidget(heliumT, 5, 4);
     connect(roomT, &QPushButton::clicked, this, &ListWidget::setRoomT);
     connect(nitrogenT, &QPushButton::clicked, this, &ListWidget::setNitrogenT);
     connect(heliumT, &QPushButton::clicked, this, &ListWidget::setHeliumT);
-    vbox2->addLayout(temperatureBox);
-    //vbox2-> setSpacing(10);
-    vbox2->addWidget(testButton);
+
+    controlsLayout->addWidget(testButton, 6, 0, 2, 5);
 
     vbox->setSpacing(10);
     vbox->addStretch(1);
@@ -128,16 +130,9 @@ ListWidget::ListWidget(QWidget* parent)
 
     hbox->addWidget(lw);
     hbox->addSpacing(15);
-    //myGrid->addLayout(vbox, 0, 0);
-    //myGrid->addLayout(vbox2, 1, 1);
-    //myGrid->addLayout(layout , 2, 2);
+
     hbox->addLayout(vbox);
-
-    //hbox->addStretch(1);
-    hbox->addLayout(vbox2);
-
-
-   // connect(testSlider, &QSlider::, this, &ListWidget::addItem);
+    hbox->addLayout(controlsLayout);
 
     connect(testButton, &QPushButton::clicked, this, &ListWidget::testItem);
     connect(save, &QPushButton::clicked, this, &ListWidget::saveItem);
@@ -147,8 +142,6 @@ ListWidget::ListWidget(QWidget* parent)
     connect(removeAll, &QPushButton::clicked, this, &ListWidget::clearItems);
 
     setLayout(hbox);
-    //setLayout(myGrid);
-
 }
 
 void ListWidget::testItem()
@@ -238,7 +231,18 @@ void ListWidget::saveItem()
 
 void ListWidget::addItem() {
 
-    QString c_text = QInputDialog::getText(this, "Item", "Enter new item");
+    toCalcList.push_back(MaterialStruct(
+        QVariant(materialCB->currentText()).toString(),
+        iterationsSB->value(),
+        maxFieldLE->text().toInt(),
+        numberFieldsToCalcSB->value(),
+        outputPountsLE->text().toInt(),
+        gammaSB->value(),
+        temperatureLE->text().toInt()
+    ));
+    lw->addItem(toCalcList.back().description);
+
+   /* QString c_text = QInputDialog::getText(this, "Item", "Enter new item");
     QString s_text = c_text.simplified();
 
     if (!s_text.isEmpty()) {
@@ -248,7 +252,7 @@ void ListWidget::addItem() {
             + " " + QVariant(temperatureLE->text()).toString() );
         int r = lw->count() - 1;
         lw->setCurrentRow(r);
-    }
+    }*/
 }
 
 void ListWidget::renameItem() {
@@ -278,6 +282,8 @@ void ListWidget::removeItem() {
     if (r != -1) {
 
         QListWidgetItem* item = lw->takeItem(r);
+        auto it = toCalcList.begin() + r;
+        toCalcList.erase(it);
         delete item;
     }
 }

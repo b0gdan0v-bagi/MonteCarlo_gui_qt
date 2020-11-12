@@ -21,6 +21,9 @@
   <ItemGroup>
     <QtMoc Include="mainframe.h" />
   </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="MaterialStruct.h" />
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{832E386D-637C-4876-87A8-DA26AC7849F4}</ProjectGuid>
     <Keyword>QtVS_v303</Keyword>
