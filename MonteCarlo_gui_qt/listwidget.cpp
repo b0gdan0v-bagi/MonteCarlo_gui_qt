@@ -22,6 +22,9 @@
 ListWidget::ListWidget(QWidget* parent)
     : QWidget(parent) {
     
+    lw = new QListWidget(this);
+    loadConfig();
+   
     QVBoxLayout* vbox = new QVBoxLayout();
     vbox->setSpacing(10);
     //QVBoxLayout* vbox2 = new QVBoxLayout();
@@ -30,17 +33,13 @@ ListWidget::ListWidget(QWidget* parent)
 
     QHBoxLayout* hbox = new QHBoxLayout(this);
 
-    lw = new QListWidget(this);
-    //lw->addItem("si");
-    //lw->addItem("inas");
-
 
     save = new QPushButton("Save", this);
     add = new QPushButton("Add", this);
     rename = new QPushButton("Rename", this);
     remove = new QPushButton("Remove", this);
     removeAll = new QPushButton("Remove All", this);
-    testButton = new QPushButton("TEST", this);
+    runButton = new QPushButton("RUN", this);
     
     // material;
 
@@ -117,12 +116,12 @@ ListWidget::ListWidget(QWidget* parent)
     connect(nitrogenT, &QPushButton::clicked, this, &ListWidget::setNitrogenT);
     connect(heliumT, &QPushButton::clicked, this, &ListWidget::setHeliumT);
 
-    controlsLayout->addWidget(testButton, 6, 0, 2, 5);
+    controlsLayout->addWidget(runButton, 6, 0, 2, 5);
 
     vbox->setSpacing(10);
     vbox->addStretch(1);
-    vbox->addWidget(save);
     vbox->addWidget(add);
+    vbox->addWidget(save);
     vbox->addWidget(rename);
     vbox->addWidget(remove);
     vbox->addWidget(removeAll);
@@ -134,7 +133,7 @@ ListWidget::ListWidget(QWidget* parent)
     hbox->addLayout(vbox);
     hbox->addLayout(controlsLayout);
 
-    connect(testButton, &QPushButton::clicked, this, &ListWidget::testItem);
+    connect(runButton, &QPushButton::clicked, this, &ListWidget::runItem);
     connect(save, &QPushButton::clicked, this, &ListWidget::saveItem);
     connect(add, &QPushButton::clicked, this, &ListWidget::addItem);
     connect(rename, &QPushButton::clicked, this, &ListWidget::renameItem);
@@ -144,30 +143,81 @@ ListWidget::ListWidget(QWidget* parent)
     setLayout(hbox);
 }
 
-void ListWidget::testItem()
+bool ListWidget::loadConfig()
+{
+    clearItems();
+    QString filename = "config.txt";
+    QFile file(filename);
+    if (!file.open(QIODevice::ReadOnly)) {
+        qWarning("Cannot open file for reading"); 
+        return false;
+    }
+    QTextStream in(&file);
+    while (!in.atEnd()) {
+        MaterialStruct materialStructTemp;
+        materialStructTemp.material = in.readLine();
+        materialStructTemp.description = in.readLine();
+        materialStructTemp.iterations = in.readLine().toInt();
+        materialStructTemp.maxField = in.readLine().toInt();
+        materialStructTemp.fieldToCalc = in.readLine().toInt();
+        materialStructTemp.outPoints = in.readLine().toInt();
+        materialStructTemp.gamma = in.readLine().toInt();
+        materialStructTemp.temp = in.readLine().toInt();
+        toCalcList.push_back(materialStructTemp);
+    }
+    for (auto const& i : toCalcList) lw->addItem(i.description);
+    return true;
+}
+
+bool ListWidget::saveConfig()
+{
+    saveItem();
+    return false;
+}
+
+void ListWidget::runItem()
 {
     QMessageBox msgBox;
+    if (toCalcList.size() == 0)
+    {
+        msgBox.setText("Add processes to calculate");
+        msgBox.exec();
+        return;
+    }
+    if (cores < toCalcList.size())
+    {
+        const QMessageBox::StandardButton ret
+            = QMessageBox::warning(this, tr("MC gui"),
+                "You are trying to start more processes <b>(" + QString::number(toCalcList.size()) +
+                ")</b> then availiable cores <b>(" + QString::number(cores) +")</b>\n"
+                    "It may decrease performance of each process\n"
+                    "Do you want to run all?",
+                QMessageBox::Yes | QMessageBox::No);
+        if (ret == QMessageBox::No) return;
+    }
+    QString forMsgBox;
    
     QTextStream out(stdout);
     QString filename = "input.txt";
     QFile file(filename);
-    for (int i = 0; i < lw->count(); ++i)
+    //for (int i = 0; i < lw->count(); ++i)
+    for (auto const &i : toCalcList)
     {
-        QString material_name = lw->item(i)->text();
-        out << material_name << "\n";
+        //QString material_name = lw->item(i)->text();
+        //out << material_name << "\n";
         
         if (file.open(QIODevice::WriteOnly)) 
         {
             QTextStream out(&file);
-            out << "iterations   1e+8\n";
-            out << "nout   40000\n";
+            out << "iterations   " + QString::number(pow(10, i.iterations)) + "\n";
+            out << "nout   " + QString::number(i.outPoints) + "\n";
             out << "exstart   0\n";
-            out << "iterations   3\n";
-            out << "exend   1200\n";
+            out << "iterations   " + QString::number(i.fieldToCalc) + "\n";
+            out << "exend   " + QString::number(i.maxField) + "\n";
             out << "lof   0\n";
-            out << "gamma   1e+12\n";
-            out << "temperature   77.00000000000000\n";
-            out << "material   " + material_name + "\n";
+            out << "gamma  " + QString::number(pow(10,i.gamma)) +"\n";
+            out << "temperature   "+ QString::number(i.temp) +"\n";
+            out << "material   " + i.material + "\n";
             out << "limiterForce   0\n";
             out << "fieldInputConfig   1\n";
             out << "PolarInput   1\n";
@@ -179,11 +229,14 @@ void ListWidget::testItem()
             out << "ee_rate 1e+12\n";
             //msgBox.setText("Items have been saved");
             file.close();
-            view_debug("MC1.exe");
-            view_debug("input.txt");
+            //view_debug("MC1.exe");
+            //view_debug("input.txt");
+            ShellExecuteA(GetDesktopWindow(), "open", "input.txt", NULL, NULL, SW_SHOW);
+            ShellExecuteA(GetDesktopWindow(), "open", "MC1.exe", NULL, NULL, SW_SHOW);
+            forMsgBox += i.description + "\n";
         }
     }
-    msgBox.setText("START CALCULATIONS");
+    msgBox.setText("START CALCULATIONS\n"+forMsgBox);
     msgBox.exec();
    // QString filename = "input.txt";
 
@@ -216,11 +269,16 @@ void ListWidget::saveItem()
     QMessageBox msgBox;
     if (file.open(QIODevice::WriteOnly)) {
         QTextStream out(&file);
-        for (int i = 0; i < lw->count(); ++i)
+        for (auto const &i : toCalcList)
         {
-
-            QString str = lw->item(i)->text();
-            out << str << "\n";
+            out << i.material << "\n";
+            out << i.description << "\n";
+            out << i.iterations << "\n";
+            out << i.maxField << "\n";
+            out << i.fieldToCalc << "\n";
+            out << i.outPoints << "\n";
+            out << i.gamma << "\n";
+            out << i.temp << "\n";
         }
         msgBox.setText("Items have been saved");
         file.close();
@@ -282,30 +340,20 @@ void ListWidget::removeItem() {
     if (r != -1) {
 
         QListWidgetItem* item = lw->takeItem(r);
-        auto it = toCalcList.begin() + r;
-        toCalcList.erase(it);
+        //auto it = toCalcList.begin() + r;
+        toCalcList.erase(toCalcList.begin() + r);
         delete item;
     }
 }
 
 void ListWidget::clearItems() {
 
+    toCalcList.clear();
     if (lw->count() != 0) {
         lw->clear();
     }
 }
 
-void ListWidget::setRoomT()
-{
-    temperatureLE->setText("300");
-}
-
-void ListWidget::setHeliumT() 
-{
-    temperatureLE->setText("4");
-}
-
-void ListWidget::setNitrogenT()
-{
-    temperatureLE->setText("77");
-}
+void ListWidget::setRoomT() {temperatureLE->setText("300");}
+void ListWidget::setHeliumT() {temperatureLE->setText("4");}
+void ListWidget::setNitrogenT(){temperatureLE->setText("77");}

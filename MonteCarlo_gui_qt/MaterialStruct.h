@@ -20,5 +20,5 @@ struct MaterialStruct
 		description = material + " n = 10^" + QString::number(iterations) + " T, K " + QString::number(temp)
 			+ " max E " + QString::number(maxField) + " field to calc " +  QString::number(fieldToCalc);
 	}
-
+	MaterialStruct() {}
 };

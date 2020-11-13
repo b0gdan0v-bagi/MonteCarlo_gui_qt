@@ -13,6 +13,8 @@
 #include <QLabel>
 #include "MaterialStruct.h"
 
+#include <thread>
+
 QT_BEGIN_NAMESPACE
 class QAction;
 class QMenu;
@@ -35,9 +37,14 @@ public:
     ListWidget(QWidget* parent = 0);
     QList<MaterialStruct> toCalcList;
 
+public slots:
+
+    bool loadConfig();
+    bool saveConfig();
+
 private slots:
 
-    void testItem();
+    void runItem();
     void saveItem();
     void addItem();
     void renameItem();
@@ -68,20 +75,13 @@ private:
     QLabel* gammaLabel;
     QSpinBox* gammaSB;
 
-    /*QSlider* ownSlider;
-    QSpinBox* myOwnSpinBox;
-    QLabel* valueLabelForMyOwnSpinBox;
-    QComboBox* myFirstComboBox;
-    QLineEdit* myFirstLineEdit;*/
-
     QLabel* temperatureLabel;
     QLineEdit* temperatureLE;
     QPushButton* nitrogenT;
     QPushButton* roomT;
     QPushButton* heliumT;
 
-
-    QPushButton* testButton;
+    QPushButton* runButton;
     QPushButton* save;
     QPushButton* add;
     QPushButton* rename;
@@ -89,6 +89,6 @@ private:
     QPushButton* removeAll;
 
     void view_debug(const char* pszFileName);
-
+    unsigned int cores = std::thread::hardware_concurrency();
 
 };

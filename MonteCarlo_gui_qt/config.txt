@@ -1,0 +1,24 @@
+ge
+ge n = 10^4 T, K 77 max E 1200 field to calc 3
+4
+1200
+3
+40000
+12
+77
+ge
+ge n = 10^4 T, K 77 max E 1200 field to calc 3
+4
+1200
+3
+40000
+12
+77
+ge
+ge n = 10^4 T, K 4 max E 1200 field to calc 3
+4
+1200
+3
+40000
+12
+4
