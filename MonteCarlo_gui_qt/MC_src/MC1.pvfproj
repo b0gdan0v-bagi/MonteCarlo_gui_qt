@@ -1,0 +1,75 @@
+<?xml version="1.0"?>
+<!--PGI Visual Fortran Project File-->
+<PGIproject Version="2.0">
+	<General ProjectIdGuid="{670010AA-A475-493E-827F-029396AB0841}"/>
+	<Configurations>
+		<Config Name="Debug|x64" OutDir="$(PlatformName)\$(ConfigurationName)" IntDir="$(PlatformName)\$(ConfigurationName)" CfgTyp="0" DbgEnvMerge="0" DbgMPI="0" DbgFmt="0" LinkOutput="$(OutDir)\$(ProjectName).exe"/>
+		<Config Name="Release|x64" OutDir="$(PlatformName)\$(ConfigurationName)" IntDir="$(PlatformName)\$(ConfigurationName)" CfgTyp="0" DbgEnvMerge="0" DbgMPI="0" LinkOutput="$(OutDir)\$(ProjectName).exe"/>
+		<Config Name="II4|x64" OutDir="$(PlatformName)\$(ConfigurationName)" IntDir="$(PlatformName)\$(ConfigurationName)" CfgTyp="0" DbgEnvMerge="0" DbgMPI="0" DbgFmt="0" TP64_Nehalem="0" FtnOpts="-Mbounds" LinkOutput="$(OutDir)\$(ProjectName).exe"/>
+	</Configurations>
+	<Files>
+		<Folder Name="Include Files">
+		</Folder>
+		<Folder Name="Resource Files">
+		</Folder>
+		<Folder Name="Source Files">
+			<File Name="anglefunc.f90" ProjRelPath="T" IsFixedFormat="F" IsIncludeFile="F">
+				<Config Name="Debug|x64"/>
+				<Config Name="Release|x64"/>
+				<Config Name="II4|x64"/>
+			</File>
+			<File Name="constlib.f90" ProjRelPath="T" IsFixedFormat="F" IsIncludeFile="F">
+				<Config Name="Debug|x64"/>
+				<Config Name="Release|x64"/>
+				<Config Name="II4|x64"/>
+			</File>
+			<File Name="gnufor2.f90" ProjRelPath="T" IsFixedFormat="F" IsIncludeFile="F">
+				<Config Name="Debug|x64"/>
+				<Config Name="Release|x64"/>
+				<Config Name="II4|x64"/>
+			</File>
+			<File Name="gnumaker.f90" ProjRelPath="T" IsFixedFormat="F" IsIncludeFile="F">
+				<Config Name="Debug|x64"/>
+				<Config Name="Release|x64"/>
+				<Config Name="II4|x64"/>
+			</File>
+			<File Name="head.fi" ProjRelPath="T" IsFixedFormat="F" IsIncludeFile="T">
+				<Config Name="Debug|x64"/>
+				<Config Name="Release|x64"/>
+				<Config Name="II4|x64"/>
+			</File>
+			<File Name="logMake.f90" ProjRelPath="T" IsFixedFormat="F" IsIncludeFile="F">
+				<Config Name="Debug|x64"/>
+				<Config Name="Release|x64"/>
+				<Config Name="II4|x64"/>
+			</File>
+			<File Name="maincount.f90" ProjRelPath="T" IsFixedFormat="F" IsIncludeFile="F">
+				<Config Name="Debug|x64"/>
+				<Config Name="Release|x64"/>
+				<Config Name="II4|x64"/>
+			</File>
+			<File Name="math.f90" ProjRelPath="T" IsFixedFormat="F" IsIncludeFile="F">
+				<Config Name="Debug|x64"/>
+				<Config Name="Release|x64"/>
+				<Config Name="II4|x64"/>
+			</File>
+			<File Name="monte.f90" ProjRelPath="T" IsFixedFormat="F" IsIncludeFile="F">
+				<Config Name="Debug|x64"/>
+				<Config Name="Release|x64"/>
+				<Config Name="II4|x64"/>
+			</File>
+			<File Name="testmodule.f90" ProjRelPath="T" IsFixedFormat="F" IsIncludeFile="F">
+				<Config Name="Debug|x64"/>
+				<Config Name="Release|x64"/>
+				<Config Name="II4|x64"/>
+			</File>
+			<File Name="textmodule.f90" ProjRelPath="T" IsFixedFormat="F" IsIncludeFile="F">
+				<Config Name="Debug|x64"/>
+				<Config Name="Release|x64"/>
+				<Config Name="II4|x64"/>
+			</File>
+		</Folder>
+	</Files>
+	<ProjStartupServices/>
+	<Globals/>
+</PGIproject>

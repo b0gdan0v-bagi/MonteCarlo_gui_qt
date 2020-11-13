@@ -57,8 +57,8 @@ ListWidget::ListWidget(QWidget* parent)
 
     iterationsSB = new QSpinBox(this);
     iterationsSB->setMinimum(3);
-    iterationsSB->setMaximum(7);
-    iterationsSB->setValue(4);
+    iterationsSB->setMaximum(10);
+    iterationsSB->setValue(7);
     iterationsLabel = new QLabel("iterations = 10^");
     controlsLayout->addWidget(iterationsLabel, 1, 0);
     controlsLayout->addWidget(iterationsSB, 1, 1);
@@ -219,7 +219,7 @@ void ListWidget::runItem()
             out << "temperature   "+ QString::number(i.temp) +"\n";
             out << "material   " + i.material + "\n";
             out << "limiterForce   0\n";
-            out << "fieldInputConfig   1\n";
+            out << "fieldInputConfig   0\n";
             out << "PolarInput   1\n";
             out << "KostilPolarConst   10\n";
             out << "triangleCheckConfig   1\n";
