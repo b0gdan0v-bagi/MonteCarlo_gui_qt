@@ -1,0 +1,98 @@
+ iterations=      100000000.0000000     
+ nout=                40000
+ exstart=                 0
+ iterations=              5
+ exend=               10000
+ lof=                     0
+ gamma=           184017878169551.1     
+ temperature=     77.00000000000000     
+ material =   ingaas                        
+ max gamma was= 0.16552E+15
+ max energy at max field =0.12923E+00
+ New gamma =0.18402E+15
+________________________________________
+****************************************
+ ex =    0.000000000000000     
+  avgenergy =0.91007E-02
+  maxenergy =0.12923E+00
+  self-scattering =0.97455E+00
+========================================
+  avgspeedX =0.37047E+04
+  avgspeedY =-.16262E+03
+  avgspeedZ =-.17387E+05
+  FreeRun =0.21954E-07
+  Effective Temperautre =0.00000E+00
+  teta avg =   0.157E+01   fi avg =   0.314E+01
+  teta scat avg =   0.151E+01  fi scat avg =   0.302E+01
+========================================
+  phonon-scat times =0.25449E+07
+________________________________________
+****************************************
+ ex =    2500.000000000000     
+  avgenergy =0.10403E-01
+  maxenergy =0.12923E+00
+  self-scattering =0.97414E+00
+========================================
+  avgspeedX =0.15105E+05
+  avgspeedY =0.14557E+05
+  avgspeedZ =0.63464E+07
+  FreeRun =0.27668E-07
+  Effective Temperautre =0.33915E-13
+  teta avg =   0.131E+01   fi avg =   0.314E+01
+  teta scat avg =   0.143E+01  fi scat avg =   0.302E+01
+========================================
+  phonon-scat times =0.25861E+07
+________________________________________
+****************************************
+ ex =    5000.000000000000     
+  avgenergy =0.11131E-01
+  maxenergy =0.14037E+00
+  self-scattering =0.97238E+00
+========================================
+  avgspeedX =-.16254E+05
+  avgspeedY =0.21244E+05
+  avgspeedZ =0.10406E+08
+  FreeRun =0.28874E-07
+  Effective Temperautre =0.70787E-13
+  teta avg =   0.116E+01   fi avg =   0.314E+01
+  teta scat avg =   0.138E+01  fi scat avg =   0.303E+01
+========================================
+  phonon-scat times =0.27623E+07
+________________________________________
+****************************************
+ ex =    7500.000000000000     
+  avgenergy =0.11791E-01
+  maxenergy =0.14037E+00
+  self-scattering =0.97010E+00
+========================================
+  avgspeedX =0.98310E+04
+  avgspeedY =-.17683E+05
+  avgspeedZ =0.13059E+08
+  FreeRun =0.29946E-07
+  Effective Temperautre =0.11013E-12
+  teta avg =   0.107E+01   fi avg =   0.314E+01
+  teta scat avg =   0.135E+01  fi scat avg =   0.304E+01
+========================================
+  phonon-scat times =0.29901E+07
+________________________________________
+****************************************
+ ex =    10000.00000000000     
+  avgenergy =0.12445E-01
+  maxenergy =0.14037E+00
+  self-scattering =0.96753E+00
+========================================
+  avgspeedX =0.29835E+04
+  avgspeedY =-.10830E+05
+  avgspeedZ =0.14966E+08
+  FreeRun =0.30958E-07
+  Effective Temperautre =0.15180E-12
+  teta avg =   0.102E+01   fi avg =   0.314E+01
+  teta scat avg =   0.132E+01  fi scat avg =   0.305E+01
+========================================
+  phonon-scat times =0.32473E+07
+ programm time =      115.0000000000000       seconds.
+ time per field =     23.00000000000000       seconds.
+ cycle time =        2.2999999999999999E-007  seconds.
+________________________________________
+****************************************
+ program ended at 20201113  171016.412                                                               

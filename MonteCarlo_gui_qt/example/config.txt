@@ -1,0 +1,32 @@
+inas
+inas n = 10^8 T, K 77 max E 1500 field to calc 5
+8
+1500
+5
+40000
+12
+77
+ge
+ge n = 10^7 T, K 77 max E 1500 field to calc 5
+7
+1500
+5
+40000
+12
+77
+cdhgte
+cdhgte n = 10^8 T, K 77 max E 800 field to calc 5
+8
+800
+5
+40000
+12
+77
+ingaas
+ingaas n = 10^8 T, K 77 max E 10000 field to calc 5
+8
+10000
+5
+40000
+12
+77
